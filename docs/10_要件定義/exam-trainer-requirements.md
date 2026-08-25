@@ -87,7 +87,7 @@ Exam Trainer
 
 ---
 
-## 5. Exam Pack
+## 5. 試験パック（Exam Pack）
 
 試験ごとの差分をExam Packとして管理する。
 
@@ -262,7 +262,7 @@ interface Question {
 
 IndexedDBへ保存する。
 
-### 8.1 attempts
+### 8.1 回答履歴（attempts）
 
 最低限以下を保持する。
 
@@ -279,7 +279,7 @@ answeredAt
 mode
 ```
 
-### 8.2 confidence
+### 8.2 理解度（confidence）
 
 回答後に理解度を記録可能にする。
 
@@ -483,7 +483,7 @@ interface AIProvider {
 ↓
 AIレビュー
 ↓
-Validation
+検証
 ↓
 人間による承認
 ↓
@@ -595,7 +595,7 @@ exam-packs/<new-exam>/
 
 共通UIや共通エンジンの変更を極力不要とする。
 
-### 18.5 UX
+### 18.5 利用者体験（UX）
 - PC / スマホ対応
 - 回答操作が少ない
 - 正誤と解説が視認しやすい
@@ -659,10 +659,10 @@ exam-packs/<new-exam>/
 
 1. Vite + React + TypeScriptセットアップ
 2. 共通型定義
-3. Zod Schema
+3. Zodスキーマ
 4. Exam Pack仕様
-5. Markdown Parser
-6. Question Validator
+5. Markdownパーサー
+6. 問題バリデーター
 7. OSS-DB Silverサンプル問題を10〜20問投入
 8. 通常演習UI
 9. 採点
@@ -674,7 +674,7 @@ exam-packs/<new-exam>/
 15. 模擬試験エンジン
 16. 試験結果
 17. 成績画面
-18. Backup / Restore
+18. バックアップ・復元
 19. PWA
 20. AWS等の2つ目のExam Packを追加し、アプリ本体変更なしで動作することを検証
 

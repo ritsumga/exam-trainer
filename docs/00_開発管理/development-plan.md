@@ -17,7 +17,7 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 
 | 工程 | 名称 | 主な成果物 | 完了判定 |
 | --- | --- | --- | --- |
-| 0 | AI駆動開発基盤 | プロジェクト指示、開発計画、承認台帳、トレーサビリティ、リスク台帳、Git運用 | 開発方法、承認方法、無料運用方針が合意済み |
+| 0 | AI駆動開発基盤 | プロジェクト指示、プロジェクトスキル、開発計画、承認台帳、トレーサビリティ、リスク台帳、Git運用 | 開発方法、AI支援方法、承認方法、無料運用方針が合意済み |
 | 1 | 要件確定 | 更新済み要件定義、要件決定記録、完成版トレーサビリティ | v1の未決要件がなく、受け入れ条件が検証可能 |
 | 2 | 基本設計 | アーキテクチャ、画面・遷移、データフロー、PWA・AI拡張設計 | 主要構成と責務が合意済み |
 | 3 | 詳細設計 | 型・スキーマ、DB、各エンジン、例外、試験仕様 | 実装者による追加判断が不要 |
@@ -30,6 +30,7 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 ### 4.1 工程0：AI駆動開発基盤
 
 - Codex向けプロジェクト指示を定義する。
+- コミットメッセージ作成と問題妥当性レビューのプロジェクトスキルを定義する。
 - 工程成果物、ブランチ、コミット、タグ、レビュー、公開手順を定義する。
 - Node.js 24 LTSを標準とし、実装開始時にnpm依存と`package-lock.json`を固定する。
 - 承認、要件追跡、リスク管理の初期台帳を作成する。
@@ -40,6 +41,7 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 - Exam Packは開発者が配置し、再ビルドする方式に確定する。
 - OSS-DB Silverは人が確認する独自問題10〜20問、第2試験は小規模デモPackとする。
 - 50問・5,000問の自動試験fixtureは製品同梱Packと分離する。
+- 問題の出典要件と妥当性判定基準を確定し、問題妥当性レビュースキルへ反映する。
 
 ### 4.3 工程2：基本設計
 
@@ -103,6 +105,9 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 - [承認台帳](approval-ledger.md)
 - [要件トレーサビリティ](requirements-traceability.md)
 - [リスク・課題台帳](risk-issue-register.md)
+- [コミットメッセージ作成スキル](../../.agents/skills/commit-message/SKILL.md)
+- [問題妥当性レビュースキル](../../.agents/skills/question-validity-review/SKILL.md)
 - [OpenAI文書：AGENTS.mdによるカスタム指示](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+- [OpenAI文書：スキルの作成](https://learn.chatgpt.com/docs/build-skills)
 - [OpenAI文書：エージェントの承認とセキュリティ](https://learn.chatgpt.com/docs/agent-approvals-security)
 - [OpenAI文書：料金](https://learn.chatgpt.com/docs/pricing)

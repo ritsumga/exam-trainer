@@ -49,6 +49,7 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 - Exam Packをビルド時に検証・変換し、静的PWAへ同梱する方式を設計する。
 - 画面遷移、レスポンシブUI、IndexedDB、各ドメインエンジン、GitHub Pagesを設計する。
 - 将来AIは`AIProvider`境界と承認状態だけ設計し、v1にProvider実装やAPIキーを含めない。
+- 工程2の成果物は[基本アーキテクチャ設計](../20_基本設計/architecture-design.md)、[画面・遷移基本設計](../20_基本設計/ui-navigation-design.md)、[データフロー・保存基本設計](../20_基本設計/data-flow-storage-design.md)、[PWA・AI拡張基本設計](../20_基本設計/pwa-ai-extension-design.md)とする。
 
 ### 4.4 工程3：詳細設計
 
@@ -108,6 +109,10 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 - [リスク・課題台帳](risk-issue-register.md)
 - [コミットメッセージ作成スキル](../../.agents/skills/commit-message/SKILL.md)
 - [問題妥当性レビュースキル](../../.agents/skills/question-validity-review/SKILL.md)
+- [基本アーキテクチャ設計](../20_基本設計/architecture-design.md)
+- [画面・遷移基本設計](../20_基本設計/ui-navigation-design.md)
+- [データフロー・保存基本設計](../20_基本設計/data-flow-storage-design.md)
+- [PWA・AI拡張基本設計](../20_基本設計/pwa-ai-extension-design.md)
 - [OpenAI文書：AGENTS.mdによるカスタム指示](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
 - [OpenAI文書：スキルの作成](https://learn.chatgpt.com/docs/build-skills)
 - [OpenAI文書：エージェントの承認とセキュリティ](https://learn.chatgpt.com/docs/agent-approvals-security)

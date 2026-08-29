@@ -101,6 +101,7 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 ## 7. 参照
 
 - [Exam Trainer 要件定義書](../10_要件定義/exam-trainer-requirements.md)
+- [工程1 要件決定記録](../10_要件定義/requirements-decision-record.md)
 - [開発ワークフロー](development-workflow.md)
 - [承認台帳](approval-ledger.md)
 - [要件トレーサビリティ](requirements-traceability.md)

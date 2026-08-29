@@ -1,0 +1,10 @@
+domains:
+  - id: sql
+    name: SQL
+    weight: 0.4
+  - id: operation
+    name: 運用管理
+    weight: 0.4
+  - id: structure
+    name: データベース構造
+    weight: 0.2

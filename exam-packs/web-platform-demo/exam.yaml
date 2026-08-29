@@ -1,0 +1,10 @@
+id: web-platform-demo
+name: Web Platform デモ
+vendor: Exam Trainer
+exam:
+  durationMinutes: 15
+  questionCount: 3
+questionTypes:
+  - single
+  - multiple
+  - input

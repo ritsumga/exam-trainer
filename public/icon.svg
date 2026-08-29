@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Exam Trainer">
+  <rect width="512" height="512" rx="96" fill="#0f172a"/>
+  <path d="M136 116h240a32 32 0 0 1 32 32v216a32 32 0 0 1-32 32H136a32 32 0 0 1-32-32V148a32 32 0 0 1 32-32Z" fill="#f8fafc"/>
+  <path d="M166 190h180M166 256h180M166 322h106" stroke="#1d4ed8" stroke-width="28" stroke-linecap="round"/>
+  <path d="m316 324 30 30 58-70" fill="none" stroke="#047857" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

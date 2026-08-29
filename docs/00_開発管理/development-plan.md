@@ -56,6 +56,7 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 - Zodをデータ契約の基準とし、公開型、純粋関数、DBスキーマ、マイグレーションを確定する。
 - すべての問題形式の回答を配列として正規化する。
 - 正常系、異常系、データ移行、E2E、PWA試験を要件へ紐付ける。
+- 工程3の成果物は[型・スキーマ・Exam Pack詳細設計](../30_詳細設計/type-schema-pack-design.md)、[DB・バックアップ詳細設計](../30_詳細設計/database-backup-design.md)、[ドメインエンジン詳細設計](../30_詳細設計/domain-engine-design.md)、[アプリケーション・UI・例外詳細設計](../30_詳細設計/application-ui-error-design.md)、[PWA・試験詳細設計](../30_詳細設計/pwa-test-design.md)とする。
 
 ### 4.5 工程4：実装
 
@@ -113,6 +114,11 @@ Exam Trainer v1を、Codexが成果物を作成し、人が工程完了を承認
 - [画面・遷移基本設計](../20_基本設計/ui-navigation-design.md)
 - [データフロー・保存基本設計](../20_基本設計/data-flow-storage-design.md)
 - [PWA・AI拡張基本設計](../20_基本設計/pwa-ai-extension-design.md)
+- [型・スキーマ・Exam Pack詳細設計](../30_詳細設計/type-schema-pack-design.md)
+- [DB・バックアップ詳細設計](../30_詳細設計/database-backup-design.md)
+- [ドメインエンジン詳細設計](../30_詳細設計/domain-engine-design.md)
+- [アプリケーション・UI・例外詳細設計](../30_詳細設計/application-ui-error-design.md)
+- [PWA・試験詳細設計](../30_詳細設計/pwa-test-design.md)
 - [OpenAI文書：AGENTS.mdによるカスタム指示](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
 - [OpenAI文書：スキルの作成](https://learn.chatgpt.com/docs/build-skills)
 - [OpenAI文書：エージェントの承認とセキュリティ](https://learn.chatgpt.com/docs/agent-approvals-security)

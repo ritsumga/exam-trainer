@@ -13,7 +13,7 @@ choices:
 tags: [join, select]
 sources:
   - url: https://www.postgresql.org/docs/current/tutorial-join.html
-verifiedAt: 2026-08-29
+verifiedAt: 2026-08-30
 status: approved
 ---
 # Question

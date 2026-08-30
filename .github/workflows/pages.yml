@@ -1,0 +1,59 @@
+name: GitHub Pagesへ公開
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  quality-and-build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: ソースを取得
+        uses: actions/checkout@v4
+      - name: Node.js 24を設定
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: 固定依存を復元
+        run: npm ci
+      - name: 製品Packを検証
+        run: npm run validate
+      - name: 承認候補を検証
+        run: npm run validate:candidates
+      - name: 静的解析
+        run: npm run lint
+      - name: 型検査
+        run: npm run typecheck
+      - name: 単体・DB試験
+        run: npm test
+      - name: Chromiumを準備
+        run: npx playwright install --with-deps chromium
+      - name: 結合・総合試験
+        run: npm run test:e2e
+      - name: Pages成果物を保存
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: quality-and-build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: GitHub Pagesへ公開
+        id: deployment
+        uses: actions/deploy-pages@v4

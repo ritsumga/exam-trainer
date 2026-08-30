@@ -13,7 +13,7 @@ choices:
 tags: [javascript, set]
 sources:
   - url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
-verifiedAt: 2026-08-29
+verifiedAt: 2026-08-30
 status: approved
 ---
 # Question

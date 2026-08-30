@@ -13,7 +13,7 @@ choices:
 tags: [constraint, foreign-key]
 sources:
   - url: https://www.postgresql.org/docs/current/ddl-constraints.html
-verifiedAt: 2026-08-29
+verifiedAt: 2026-08-30
 status: approved
 ---
 # Question

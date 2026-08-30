@@ -13,7 +13,7 @@ choices:
 tags: [backup, pg-dump]
 sources:
   - url: https://www.postgresql.org/docs/current/backup-dump.html
-verifiedAt: 2026-08-29
+verifiedAt: 2026-08-30
 status: approved
 ---
 # Question

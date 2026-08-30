@@ -1,6 +1,4 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import type { Question } from "../types/exam-pack";
 
 export function Button({ busy = false, children, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { busy?: boolean }) {
@@ -9,7 +7,6 @@ export function Button({ busy = false, children, ...props }: ButtonHTMLAttribute
 export function Alert({ severity, title, children }: { severity: "info" | "success" | "warning" | "error"; title: string; children?: ReactNode }) {
   return <div className={`alert ${severity}`} role={severity === "error" ? "alert" : "status"}><strong>{title}</strong>{children}</div>;
 }
-export function Markdown({ children }: { children: string }) { return <ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml>{children}</ReactMarkdown>; }
 export function Loading() { return <div className="loading" role="status">読み込み中…</div>; }
 export function Empty({ title, children }: { title: string; children?: ReactNode }) { return <section className="empty"><h2>{title}</h2>{children}</section>; }
 

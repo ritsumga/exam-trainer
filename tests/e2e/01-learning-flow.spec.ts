@@ -76,9 +76,10 @@ test("バックアップを出力し、同版を確認後に全置換して未�
   const input = page.getByLabel("バックアップファイル");
   await input.setInputFiles({ name: "backup.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(snapshot)) });
   await expect(page.getByRole("heading", { name: "置換内容の確認" })).toBeVisible();
+  await expect(page.getByRole("row", { name: "復習状態 0 0" })).toBeVisible();
   await page.getByLabel("現在の学習データが全置換されることを確認しました").check();
   await page.getByRole("button", { name: "現在の学習データを置き換える" }).click();
-  await expect(page.getByText("学習データをすべて置き換えました。", { exact: true })).toBeVisible();
+  await expect(page.getByText(/学習データを置き換えました。回答履歴 \d+件、お気に入り \d+件、復習状態 \d+件、模擬試験 \d+件、設定 \d+件。復元日時:/)).toBeVisible();
   await input.setInputFiles({ name: "future.json", mimeType: "application/json", buffer: Buffer.from('{"product":"exam-trainer","schemaVersion":2}') });
   await expect(page.getByText("バックアップを検証できませんでした。版と内容を確認してください。", { exact: true })).toBeVisible();
 });

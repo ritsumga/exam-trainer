@@ -40,8 +40,8 @@ export const services = {
     const references = [...snapshot.data.attempts, ...snapshot.data.bookmarks, ...snapshot.data.reviewStates];
     return {
       snapshot, expectedRevision,
-      currentCounts: { attempts: current.data.attempts.length, bookmarks: current.data.bookmarks.length, examSessions: current.data.examSessions.length, settings: current.data.settings.length },
-      restoredCounts: { attempts: snapshot.data.attempts.length, bookmarks: snapshot.data.bookmarks.length, examSessions: snapshot.data.examSessions.length, settings: snapshot.data.settings.length },
+      currentCounts: { attempts: current.data.attempts.length, bookmarks: current.data.bookmarks.length, reviewStates: current.data.reviewStates.length, examSessions: current.data.examSessions.length, settings: current.data.settings.length },
+      restoredCounts: { attempts: snapshot.data.attempts.length, bookmarks: snapshot.data.bookmarks.length, reviewStates: snapshot.data.reviewStates.length, examSessions: snapshot.data.examSessions.length, settings: snapshot.data.settings.length },
       outsidePackReferences: references.filter((row) => !knownQuestions.has(`${row.examId}\0${row.questionId}`)).length,
     };
   },

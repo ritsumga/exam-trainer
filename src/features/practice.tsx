@@ -7,7 +7,8 @@ import type { ExamPackIndex, Question } from "../types/exam-pack";
 import type { Domain } from "../schemas/exam-pack";
 import { services } from "../services/app-services";
 import { practiceSessionKey, storePracticeSession, type StoredPractice } from "../services/practice-session";
-import { Alert, Button, Loading, Markdown, QuestionInput } from "../components/ui";
+import { Markdown } from "../components/markdown";
+import { Alert, Button, Loading, QuestionInput } from "../components/ui";
 
 function formatAnswer(question: Question, values: readonly string[]): string {
   if (question.type === "input") return values.join(" / ");

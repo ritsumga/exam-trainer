@@ -17,7 +17,7 @@ export function AppLayout() {
     {(needRefresh || remoteUpdate === "available") && !updateDismissed && <div className="update-banner" role="status"><span>新しい版を利用できます。</span>{needRefresh && <><button type="button" onClick={() => void updateService.activate(() => updateServiceWorker(true))}>更新する</button><button type="button" onClick={() => setUpdateDismissed(true)}>後で</button></>}</div>}
     {remoteUpdate === "started" && <div className="update-banner" role="status">別のタブで更新中です。保存操作を続けられます。</div>}
     <main className="app-main"><h1 className="sr-only" tabIndex={-1} ref={heading}>Exam Trainer</h1><Suspense fallback={<Loading />}><Outlet /></Suspense></main>
-    <footer data-build-id={import.meta.env.VITE_BUILD_ID ?? "production"}>学習データはこの端末のブラウザ内に保存されます。</footer>
+    <footer data-build-id={import.meta.env.VITE_BUILD_ID ?? "production"}>学習データはこの端末のブラウザ内に保存されます。Exam Trainerは各試験運営団体の公式製品ではない、学習目的の独立したプロジェクトです。</footer>
   </>;
 }
 

@@ -13,7 +13,7 @@ choices:
 tags: [javascript, promise]
 sources:
   - url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-verifiedAt: 2026-08-29
+verifiedAt: 2026-08-30
 status: approved
 ---
 # Question

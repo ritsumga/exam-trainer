@@ -20,6 +20,7 @@
 - `APP`: [アプリケーション・UI・例外詳細設計](../30_詳細設計/application-ui-error-design.md)
 - `TEST`: [PWA・試験詳細設計](../30_詳細設計/pwa-test-design.md)
 - `SYSTEM-TEST`: [工程5 結合・総合試験結果](../50_試験/system-test-report.md)
+- `ACCEPTANCE`: [工程6 受入記録](../60_受入リリース/acceptance-report.md)
 
 ## 2. 工程1で原子化した機能要件
 
@@ -54,18 +55,18 @@
 
 | ID | 要件 | 要件定義 | 設計 | 実装 | 試験・証跡 | 状態 |
 | --- | --- | --- | --- | --- | --- | --- |
-| AC-01 | OSS-DB Silverの承認済み独自問題10〜20問をMarkdownから読み込める | 21.1 | ARC 5、DATA 4、UI 4.1、TYPE 4〜7 | `exam-packs/ossdb-silver/`、Pack Catalog、試験選択UI | Validator、工程5・6 | 実装済み |
-| AC-02 | single、multiple、inputへ回答できる | 21.2 | ARC 6.1、UI 4.3、TYPE 4、ENG 3、APP 5 | 採点エンジン、`QuestionInput`、通常演習UI | 単体、工程5・6 | 実装済み |
-| AC-03 | 正誤判定と解説表示ができる | 21.3 | UI 4.3・4.4、APP 4.1・5 | 通常演習UI、模試UI | 単体、工程5・6 | 実装済み |
-| AC-04 | 回答履歴がブラウザ再起動後も残る | 21.4 | DATA 3・5・7.2、PWA 2、DB 2〜5 | Dexie Repository | DB単体、工程5・6 | 実装済み |
-| AC-05 | 誤答、未回答、お気に入り、分野別、ランダム演習ができる | 21.5 | ARC 6.2、DATA 5、UI 4.2、ENG 5 | 演習エンジン、演習設定UI | 単体、工程5・6 | 実装済み |
-| AC-06 | 規定式と同点規則で弱点問題を抽出できる | 21.6 | ARC 6.4、DATA 6、ENG 7 | 復習優先度エンジン | 単体、工程5・6 | 実装済み |
-| AC-07 | 分野割当、問題不足、中断再開、時間切れを含む模擬試験を実施できる | 21.7 | ARC 6.3、DATA 7、UI 4.4、DB 5、ENG 6・8、APP 4.2 | 模試エンジン、Repository、模試UI | 単体、工程5・6 | 実装済み |
-| AC-08 | 試験終了後に分野別結果を確認できる | 21.8 | DATA 8、UI 4.5、ENG 8・9、APP 6.3 | 結果集計、結果UI、誤答再演習 | 単体、工程5・6 | 実装済み |
-| AC-09 | 版検証と原子的な全置換により学習データをJSONへバックアップ・復元できる | 21.9 | DATA 9・10、UI 4.6、DB 6〜8、APP 6.4 | Backup schema、Repository、データ管理UI | DB単体、工程5・6 | 実装済み |
-| AC-10 | オフラインで主要学習機能が動作する | 21.10 | PWA 2〜5、TEST 2・3・8 | Vite PWA、precache | production build、工程5・6 | 実装済み |
-| AC-11 | 3形式を含む第2試験をExam Pack追加だけで利用できる | 21.11 | ARC 4・5、DATA 4、TYPE 4〜7 | `exam-packs/web-platform-demo/` | Validator、工程5・6 | 実装済み |
-| AC-12 | 有料サービスなしで主要機能を利用できる | 21.12 | ARC 2、PWA 9、全工程 | ローカルPWA、OSS依存のみ | 依存監査、工程5・6 | 実装済み |
+| AC-01 | OSS-DB Silverの承認済み独自問題10〜20問をMarkdownから読み込める | 21.1 | ARC 5、DATA 4、UI 4.1、TYPE 4〜7 | `exam-packs/ossdb-silver/`、Pack Catalog、試験選択UI | Validator、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-02 | single、multiple、inputへ回答できる | 21.2 | ARC 6.1、UI 4.3、TYPE 4、ENG 3、APP 5 | 採点エンジン、`QuestionInput`、通常演習UI | 単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-03 | 正誤判定と解説表示ができる | 21.3 | UI 4.3・4.4、APP 4.1・5 | 通常演習UI、模試UI | 単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-04 | 回答履歴がブラウザ再起動後も残る | 21.4 | DATA 3・5・7.2、PWA 2、DB 2〜5 | Dexie Repository | DB単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-05 | 誤答、未回答、お気に入り、分野別、ランダム演習ができる | 21.5 | ARC 6.2、DATA 5、UI 4.2、ENG 5 | 演習エンジン、演習設定UI | 単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-06 | 規定式と同点規則で弱点問題を抽出できる | 21.6 | ARC 6.4、DATA 6、ENG 7 | 復習優先度エンジン | 単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-07 | 分野割当、問題不足、中断再開、時間切れを含む模擬試験を実施できる | 21.7 | ARC 6.3、DATA 7、UI 4.4、DB 5、ENG 6・8、APP 4.2 | 模試エンジン、Repository、模試UI | 単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-08 | 試験終了後に分野別結果を確認できる | 21.8 | DATA 8、UI 4.5、ENG 8・9、APP 6.3 | 結果集計、結果UI、誤答再演習 | 単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-09 | 版検証と原子的な全置換により学習データをJSONへバックアップ・復元できる | 21.9 | DATA 9・10、UI 4.6、DB 6〜8、APP 6.4 | Backup schema、Repository、データ管理UI | DB単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-10 | オフラインで主要学習機能が動作する | 21.10 | PWA 2〜5、TEST 2・3・8 | Vite PWA、precache | production build、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-11 | 3形式を含む第2試験をExam Pack追加だけで利用できる | 21.11 | ARC 4・5、DATA 4、TYPE 4〜7 | `exam-packs/web-platform-demo/` | Validator、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-12 | 有料サービスなしで主要機能を利用できる | 21.12 | ARC 2、PWA 9、全工程 | ローカルPWA、OSS依存のみ | 依存監査、SYSTEM-TEST、ACCEPTANCE | 検証済み |
 
 ## 4. 横断要件
 
@@ -91,3 +92,4 @@
 | 2026-08-29 | 工程3詳細設計 | 型・Pack、DB・バックアップ、ドメインエンジン、UI・例外、PWA・試験の詳細設計参照を追加 | 要件の意味と状態は変更せず、FR-001〜FR-024、AC-01〜AC-11、QR-01〜QR-07の実装・試験仕様を具体化 |
 | 2026-08-29 | 工程4実装 | React/Vite/PWA基盤、Zod契約、Pack Validator、採点・演習・弱点・模試エンジン、Dexie Repository、バックアップ、画面、CI、承認済み問題13問を実装 | FR-001〜FR-024、AC-01〜AC-12、QR-01〜QR-03、QR-05〜QR-07を実装済みへ更新。QR-04の性能検証は工程5で実施する |
 | 2026-08-30 | 工程5結合・総合試験 | 50問・5,000問fixture、DB異常系、E2E、PWA、offline、更新、レスポンシブ、axe、性能試験を追加し、検出障害を修正 | FR-001〜FR-024、AC-01〜AC-12、QR-01〜QR-07の自動試験証跡をSYSTEM-TESTへ集約し、QR-04を検証済みへ更新 |
+| 2026-08-30 | 工程6公開前受入 | 12受入条件の事前判定、利用・Pack・運用文書、問題公開前レビュー、Pages workflowを整備し、復元完了表示と初期chunkを修正 | AC-01〜AC-12の工程6証跡をACCEPTANCEへ集約。AC-09の各件数・日時表示を補完し、QR-04の初回ロードリスクを軽減。人の公開前受入承認によりAC-01〜AC-12を検証済みへ更新 |

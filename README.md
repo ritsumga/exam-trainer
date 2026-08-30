@@ -16,7 +16,7 @@ Exam Trainerは、試験に依存しないローカルファーストの問題�
 
 ## 利用する
 
-公開版は工程6の受入・公開承認後に案内します。ローカル実行にはNode.js 24 LTSを使用してください。
+公開版は[GitHub Pages](https://ritsumga.github.io/exam-trainer/)から利用できます。ローカル実行にはNode.js 24 LTSを使用してください。
 
 ```powershell
 npm ci

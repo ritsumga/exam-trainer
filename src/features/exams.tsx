@@ -19,8 +19,10 @@ export function ExamsPage() {
 }
 
 export function ExamHomePage() {
-  const { examId = "" } = useParams(); const [session, setSession] = useState<ExamSession>(); const [discarding, setDiscarding] = useState(false);
-  useEffect(() => { void services.repository.findInProgressSession(examId).then(setSession); }, [examId]);
+  const { examId = "" } = useParams(); const [session, setSession] = useState<ExamSession>(); const [exists, setExists] = useState<boolean>(); const [discarding, setDiscarding] = useState(false);
+  useEffect(() => { void Promise.all([services.catalog.list(), services.repository.findInProgressSession(examId)]).then(([entries, saved]) => { setExists(entries.some((entry) => entry.examId === examId)); setSession(saved); }); }, [examId]);
   async function discard() { if (session?.status !== "in-progress" || !window.confirm("未完了の模擬試験を破棄しますか？")) return; setDiscarding(true); await services.repository.discardExamSession(session.id, session.revision); setSession(undefined); setDiscarding(false); }
+  if (exists === undefined) return <Loading />;
+  if (!exists) return <Alert severity="error" title="試験が見つかりません"><Link to="/exams">試験選択へ戻る</Link></Alert>;
   return <section><Link className="back" to="/exams">← 試験選択</Link><p className="eyebrow">EXAM HOME</p><h2>{examId}</h2>{session?.status === "in-progress" && <Alert severity="warning" title="未完了の模擬試験があります"><p>期限: {new Date(session.deadline).toLocaleString("ja-JP")}</p><div className="pager"><Link className="button primary" to={`mock/${session.id}`}>模擬試験を再開</Link><Button className="danger" busy={discarding} onClick={() => void discard()}>破棄する</Button></div></Alert>}<div className="action-grid"><Link className="action-card" to="practice/setup"><strong>通常演習</strong><span>未回答・誤答・弱点・お気に入り・分野別・ランダム</span></Link><Link className="action-card" to="mock/setup"><strong>模擬試験</strong><span>時間制限、見直し、分野配分、中断再開</span></Link><Link className="action-card" to="statistics"><strong>成績</strong><span>全体・分野別の正答率と模試履歴</span></Link><Link className="action-card" to="/settings/data"><strong>データ管理</strong><span>JSONバックアップと原子的な全置換</span></Link></div></section>;
 }

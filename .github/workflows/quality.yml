@@ -34,3 +34,7 @@ jobs:
         run: npm test
       - name: Production build
         run: npm run build
+      - name: Chromiumを準備
+        run: npx playwright install chromium
+      - name: 結合・総合試験
+        run: npm run test:e2e

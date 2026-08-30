@@ -5,7 +5,7 @@ import { Loading } from "../components/ui";
 import { updateService } from "../services/update-service";
 
 export function AppLayout() {
-  const location = useLocation(); const heading = useRef<HTMLHeadingElement>(null); const [registration, setRegistration] = useState<ServiceWorkerRegistration>(); const [remoteUpdate, setRemoteUpdate] = useState<"available" | "started">();
+  const location = useLocation(); const heading = useRef<HTMLHeadingElement>(null); const [registration, setRegistration] = useState<ServiceWorkerRegistration>(); const [remoteUpdate, setRemoteUpdate] = useState<"available" | "started">(); const [updateDismissed, setUpdateDismissed] = useState(false);
   const { needRefresh: [needRefresh], offlineReady: [offlineReady], updateServiceWorker } = useRegisterSW({ onRegisteredSW: (_url, value) => setRegistration(value) });
   useEffect(() => { heading.current?.focus(); }, [location.pathname]);
   useEffect(() => updateService.subscribe((message) => setRemoteUpdate(message.type === "update-started" ? "started" : "available")), []);
@@ -14,10 +14,10 @@ export function AppLayout() {
   return <>
     <header className="app-header"><Link className="brand" to="/exams">Exam Trainer</Link><nav aria-label="共通"><Link to="/exams">試験選択</Link><Link to="/settings/data">データ管理</Link></nav></header>
     {offlineReady && <div className="update-banner" role="status">オフラインで利用する準備ができました。</div>}
-    {(needRefresh || remoteUpdate === "available") && <div className="update-banner" role="status"><span>新しい版を利用できます。</span>{needRefresh && <button type="button" onClick={() => void updateService.activate(() => updateServiceWorker(true))}>更新する</button>}</div>}
+    {(needRefresh || remoteUpdate === "available") && !updateDismissed && <div className="update-banner" role="status"><span>新しい版を利用できます。</span>{needRefresh && <><button type="button" onClick={() => void updateService.activate(() => updateServiceWorker(true))}>更新する</button><button type="button" onClick={() => setUpdateDismissed(true)}>後で</button></>}</div>}
     {remoteUpdate === "started" && <div className="update-banner" role="status">別のタブで更新中です。保存操作を続けられます。</div>}
     <main className="app-main"><h1 className="sr-only" tabIndex={-1} ref={heading}>Exam Trainer</h1><Suspense fallback={<Loading />}><Outlet /></Suspense></main>
-    <footer>学習データはこの端末のブラウザ内に保存されます。</footer>
+    <footer data-build-id={import.meta.env.VITE_BUILD_ID ?? "production"}>学習データはこの端末のブラウザ内に保存されます。</footer>
   </>;
 }
 

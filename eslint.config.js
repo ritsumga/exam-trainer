@@ -8,7 +8,7 @@ const typed = tseslint.configs.strictTypeChecked.map((config) => ({ ...config, f
 const stylistic = tseslint.configs.stylisticTypeChecked.map((config) => ({ ...config, files: ["**/*.{ts,tsx}"] }));
 
 export default tseslint.config(
-  { ignores: ["dist", "coverage", "src/generated", "node_modules"] },
+  { ignores: ["dist", "coverage", "playwright-report", "test-results", "src/generated", "node_modules"] },
   { ...js.configs.recommended, files: ["**/*.js"], languageOptions: { globals: globals.node } },
   ...typed,
   ...stylistic,

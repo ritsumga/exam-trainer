@@ -75,7 +75,28 @@ export const generatedExamPackSchema = z.object({
   exam: examDefinitionSchema,
   domains: z.array(domainSchema).min(1),
   questions: z.array(questionSchema),
-}).strict();
+}).strict().superRefine((pack, context) => {
+  const domainIds = pack.domains.map((domain) => domain.id); const questionIds = pack.questions.map((question) => question.id);
+  if (new Set(pack.exam.questionTypes).size !== pack.exam.questionTypes.length) context.addIssue({ code: "custom", path: ["exam", "questionTypes"], message: "問題形式が重複しています" });
+  if (new Set(domainIds).size !== domainIds.length) context.addIssue({ code: "custom", path: ["domains"], message: "分野IDが重複しています" });
+  if (pack.domains.some((domain) => domain.weight !== undefined) && pack.domains.some((domain) => domain.weight === undefined)) context.addIssue({ code: "custom", path: ["domains"], message: "weightは全分野で指定するか全分野で省略してください" });
+  if (new Set(questionIds).size !== questionIds.length) context.addIssue({ code: "custom", path: ["questions"], message: "問題IDが重複しています" });
+  const knownDomains = new Set(domainIds);
+  pack.questions.forEach((question, index) => {
+    if (question.examId !== pack.exam.id) context.addIssue({ code: "custom", path: ["questions", index, "examId"], message: "試験参照が一致しません" });
+    if (!knownDomains.has(question.domainId)) context.addIssue({ code: "custom", path: ["questions", index, "domainId"], message: "未知の分野です" });
+    if (!pack.exam.questionTypes.includes(question.type)) context.addIssue({ code: "custom", path: ["questions", index, "type"], message: "試験が対応しない問題形式です" });
+    if (question.type === "input") {
+      const normalized = question.answers.map((value) => value.normalize("NFC").replace(/\r\n?/g, "\n").trim());
+      if (new Set(normalized).size !== normalized.length) context.addIssue({ code: "custom", path: ["questions", index, "answers"], message: "正規化後の正解候補が重複しています" });
+      return;
+    }
+    const choiceIds = question.choices.map((choice) => choice.id);
+    if (new Set(choiceIds).size !== choiceIds.length || question.answers.some((answer) => !choiceIds.includes(answer))) context.addIssue({ code: "custom", path: ["questions", index, "answers"], message: "正解と選択肢が整合しません" });
+    if (Object.keys(question.choiceExplanations).length !== choiceIds.length || choiceIds.some((id) => question.choiceExplanations[id] === undefined)) context.addIssue({ code: "custom", path: ["questions", index, "choiceExplanations"], message: "選択肢解説が選択肢と一致しません" });
+    if (question.type === "multiple" && (new Set(question.answers).size !== question.answers.length || question.answers.length >= choiceIds.length)) context.addIssue({ code: "custom", path: ["questions", index, "answers"], message: "複数選択の正解集合が不正です" });
+  });
+});
 
 export const examCatalogEntrySchema = z.object({
   examId: idSchema,

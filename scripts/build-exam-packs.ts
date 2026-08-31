@@ -31,6 +31,19 @@ const frontMatterSchema = z.object({
 
 function addIssue(code: string, file: string, message: string): void { issues.push({ code, file: path.relative(root, file), message }); }
 
+function escapeWorkflowCommand(value: string): string {
+  return value.replaceAll("%", "%25").replaceAll("\r", "%0D").replaceAll("\n", "%0A");
+}
+
+function reportIssue(issue: ValidationIssue): void {
+  const message = `${issue.code} ${issue.file}: ${issue.message}`;
+  if (process.env.GITHUB_ACTIONS === "true") {
+    process.stderr.write(`::error title=${escapeWorkflowCommand(issue.code)}::${escapeWorkflowCommand(message)}\n`);
+    return;
+  }
+  process.stderr.write(`${message}\n`);
+}
+
 async function parseYaml(file: string): Promise<unknown> {
   const text = await readFile(file, "utf8");
   const document = parseDocument(text, { uniqueKeys: true });
@@ -133,7 +146,7 @@ async function main(): Promise<void> {
   }
   if (issues.length > 0) {
     issues.sort((a, b) => a.file.localeCompare(b.file) || a.code.localeCompare(b.code));
-    for (const issue of issues) process.stderr.write(`${issue.code} ${issue.file}: ${issue.message}\n`);
+    for (const issue of issues) reportIssue(issue);
     await rm(temporaryRoot, { recursive: true, force: true });
     process.exitCode = 1; return;
   }

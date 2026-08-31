@@ -86,7 +86,15 @@ async function parseQuestion(file: string): Promise<Question | undefined> {
     const parsed = matter(source);
     const rawDocument = parseDocument(parsed.matter.replace(/^\s*---\s*\r?\n?/, ""), { uniqueKeys: true });
     if (rawDocument.errors.length > 0) throw new Error(rawDocument.errors.map((error) => error.message).join("; "));
-    const metadata = frontMatterSchema.parse(rawDocument.toJS({ maxAliasCount: 0 }));
+    const rawMetadata: unknown = rawDocument.toJS({ maxAliasCount: 0 });
+    const metadataResult = frontMatterSchema.safeParse(rawMetadata);
+    if (!metadataResult.success) {
+      const receivedStatus = typeof rawMetadata === "object" && rawMetadata !== null && "status" in rawMetadata
+        ? (rawMetadata as { status?: unknown }).status
+        : undefined;
+      throw new Error(`${metadataResult.error.message}; 受信status=${JSON.stringify(receivedStatus)} (${typeof receivedStatus})`);
+    }
+    const metadata = metadataResult.data;
     const choices = metadata.choices === undefined ? [] : Object.entries(metadata.choices).map(([id, text]) => ({ id, text }));
     const sections = extractSections(parsed.content, choices.map((choice) => choice.id));
     const common = {

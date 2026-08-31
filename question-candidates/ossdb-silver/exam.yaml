@@ -1,0 +1,10 @@
+id: ossdb-silver
+name: OSS-DB Silver 学習用（候補）
+vendor: LPI-Japan
+exam:
+  durationMinutes: 90
+  questionCount: 150
+questionTypes:
+  - single
+  - multiple
+  - input

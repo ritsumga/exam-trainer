@@ -44,7 +44,7 @@
 | FR-016 | Exam Packを開発時に配置・検証し、再ビルドして同梱する | 5、9.1 | DR-009 | ARC 5、DATA 4、PWA 3、TYPE 3〜7 | `scripts/build-exam-packs.ts`、`src/data/exam-pack-catalog.ts` | `npm run validate`、`npm run build` | 実装済み |
 | FR-017 | 製品同梱問題に出典、確認日、承認状態を必須とする | 6.3、6.5、16 | DR-012、DR-013、DR-015 | DATA 4、PWA 8、TYPE 4・6 | `src/schemas/exam-pack.ts`、`scripts/build-exam-packs.ts` | Validator、問題レビュー記録 | 実装済み |
 | FR-018 | 問題を独自に構成し、記憶問題、ダンプ、転記、軽微な言い換えを使わない | 6.5 | DR-014 | PWA 8、TYPE 6 | `exam-packs/` | 問題レビュー記録、人承認 | 実装済み |
-| FR-019 | OSS-DB Silverの承認済み独自問題を10〜20問同梱する | 19、21.1 | DR-010 | ARC 5、PWA 8、TYPE 6 | `exam-packs/ossdb-silver/` | Validator、問題レビュー記録、人承認 | 実装済み |
+| FR-019 | OSS-DB Silverの承認済み独自問題を10問以上同梱し、承認済み問題を追加拡張できる | 19、21.1 | DR-010、DR-020 | ARC 5、PWA 8、TYPE 6 | `exam-packs/ossdb-silver/` | Validator、問題レビュー記録、人承認 | 実装済み |
 | FR-020 | 第2試験デモPackに3形式を各1問以上、合計3問以上含める | 19、21.11 | DR-010 | ARC 4・5、TYPE 4・6 | `exam-packs/web-platform-demo/` | Validator、工程5 E2E | 実装済み |
 | FR-021 | 50問・5,000問fixtureを製品成果物とPWAキャッシュへ混入させない | 19 | DR-011 | ARC 5、DATA 4、PWA 3、TEST 2・5 | `scripts/check-build.ts` | `npm run build`、工程5 fixture試験 | 実装済み |
 | FR-022 | 問題難易度を必要知識と推論量による5段階で判定する | 6.6 | DR-017 | TYPE 4・6、TEST 5 | `src/schemas/exam-pack.ts`、`exam-packs/` | Validator、問題レビュー記録 | 実装済み |
@@ -55,7 +55,7 @@
 
 | ID | 要件 | 要件定義 | 設計 | 実装 | 試験・証跡 | 状態 |
 | --- | --- | --- | --- | --- | --- | --- |
-| AC-01 | OSS-DB Silverの承認済み独自問題10〜20問をMarkdownから読み込める | 21.1 | ARC 5、DATA 4、UI 4.1、TYPE 4〜7 | `exam-packs/ossdb-silver/`、Pack Catalog、試験選択UI | Validator、SYSTEM-TEST、ACCEPTANCE | 検証済み |
+| AC-01 | OSS-DB Silverの承認済み独自問題10問以上をMarkdownから読み込める | 21.1 | ARC 5、DATA 4、UI 4.1、TYPE 4〜7 | `exam-packs/ossdb-silver/`、Pack Catalog、試験選択UI | Validator、SYSTEM-TEST、ACCEPTANCE | 検証済み |
 | AC-02 | single、multiple、inputへ回答できる | 21.2 | ARC 6.1、UI 4.3、TYPE 4、ENG 3、APP 5 | 採点エンジン、`QuestionInput`、通常演習UI | 単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
 | AC-03 | 正誤判定と解説表示ができる | 21.3 | UI 4.3・4.4、APP 4.1・5 | 通常演習UI、模試UI | 単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
 | AC-04 | 回答履歴がブラウザ再起動後も残る | 21.4 | DATA 3・5・7.2、PWA 2、DB 2〜5 | Dexie Repository | DB単体、SYSTEM-TEST、ACCEPTANCE | 検証済み |
@@ -94,3 +94,4 @@
 | 2026-08-30 | 工程5結合・総合試験 | 50問・5,000問fixture、DB異常系、E2E、PWA、offline、更新、レスポンシブ、axe、性能試験を追加し、検出障害を修正 | FR-001〜FR-024、AC-01〜AC-12、QR-01〜QR-07の自動試験証跡をSYSTEM-TESTへ集約し、QR-04を検証済みへ更新 |
 | 2026-08-30 | 工程6公開前受入 | 12受入条件の事前判定、利用・Pack・運用文書、問題公開前レビュー、Pages workflowを整備し、復元完了表示と初期chunkを修正 | AC-01〜AC-12の工程6証跡をACCEPTANCEへ集約。AC-09の各件数・日時表示を補完し、QR-04の初回ロードリスクを軽減。人の公開前受入承認によりAC-01〜AC-12を検証済みへ更新 |
 | 2026-08-31 | 工程6承認 | 初回Pages公開と公開後確認を含む工程6成果物を人が最終承認し、v1.0.0を確定 | 要件の意味と状態に変更なし。AC-01〜AC-12の検証済み状態と公開証跡を正式なv1基準として確定 |
+| 2026-08-31 | OSS-DB Silver問題拡充 | 人が候補150問を集合承認し、製品問題を10問から160問へ拡充 | FR-019とAC-01の問題数を下限10問へ変更し、承認済み問題の継続追加を許容。R-011を解消し、50問模試を可能にした |

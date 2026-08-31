@@ -1,0 +1,7 @@
+domains:
+  - id: sql
+    name: SQL
+  - id: operation
+    name: 運用管理
+  - id: structure
+    name: データベース構造

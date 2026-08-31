@@ -3,7 +3,7 @@ name: OSS-DB Silver 学習用
 vendor: LPI-Japan
 exam:
   durationMinutes: 90
-  questionCount: 10
+  questionCount: 50
 questionTypes:
   - single
   - multiple

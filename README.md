@@ -12,7 +12,7 @@ Exam Trainerは、試験に依存しないローカルファーストの問題�
 - 全体・分野別の成績表示
 - IndexedDBへの自動保存とJSONバックアップ・全置換復元
 - インストール可能なPWAとオフライン演習
-- OSS-DB Silver学習用10問とWeb Platformデモ3問
+- OSS-DB Silver学習用160問とWeb Platformデモ3問
 
 ## 利用する
 

@@ -24,7 +24,8 @@ for (const packName of candidatePacks) {
   for (const fileName of (await readdir(path.join(packRoot, "questions"))).filter((name) => name.endsWith(".md")).sort()) {
     const file = path.join(packRoot, "questions", fileName);
     try {
-      const parsed = matter(await readFile(file, "utf8"));
+      const source = (await readFile(file, "utf8")).replace(/\r\n?/g, "\n");
+      const parsed = matter(source);
       const document = parseDocument(parsed.matter.replace(/^\s*---\s*\r?\n?/, ""), { uniqueKeys: true });
       if (document.errors.length > 0) throw new Error(document.errors.map((error) => error.message).join("; "));
       const metadata = candidateSchema.parse(document.toJS({ maxAliasCount: 0 }));

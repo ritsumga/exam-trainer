@@ -82,7 +82,7 @@ function extractSections(markdown: string, choiceIds: readonly string[]): { ques
 
 async function parseQuestion(file: string): Promise<Question | undefined> {
   try {
-    const source = await readFile(file, "utf8");
+    const source = (await readFile(file, "utf8")).replace(/\r\n?/g, "\n");
     const parsed = matter(source);
     const rawDocument = parseDocument(parsed.matter.replace(/^\s*---\s*\r?\n?/, ""), { uniqueKeys: true });
     if (rawDocument.errors.length > 0) throw new Error(rawDocument.errors.map((error) => error.message).join("; "));

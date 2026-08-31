@@ -2,7 +2,7 @@
 
 ## 1. 公開方針
 
-公開元は人が承認した`main`とし、GitHub Actionsの手動実行で全品質ゲートが成功した成果物だけをGitHub Pagesへ公開する。Pagesのベースパスは`/exam-trainer/`である。push、リポジトリ可視性変更、Pages設定、デプロイ、GitHub Release作成は、それぞれ人の明示承認後に実施する。
+公開元は人が承認した`main`とし、GitHub Actionsの手動実行、または明示承認後の`.github/pages-deploy-trigger.txt`更新で全品質ゲートが成功した成果物だけをGitHub Pagesへ公開する。通常の`main` pushではPagesを公開しない。Pagesのベースパスは`/exam-trainer/`である。push、リポジトリ可視性変更、Pages設定、デプロイ、GitHub Release作成は、それぞれ人の明示承認後に実施する。
 
 2026-08-30時点で、GitHub FreeのPagesは公開リポジトリで利用できる。無料運用ではリポジトリを公開する必要があり、公開するとソースと履歴を誰でも閲覧できる。Pagesサイト自体もインターネットへ公開される。根拠はGitHub公式の[GitHub Pagesの概要](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)、[GitHubのプラン](https://docs.github.com/en/get-started/learning-about-github/githubs-plans)、[Pagesサイトの作成](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)とする。
 
@@ -15,7 +15,7 @@
 3. リポジトリ可視性を確認する。GitHub Freeで非公開の場合は、公開変更の影響を確認して人が明示承認する。
 4. GitHubのSettings > PagesでSourceをGitHub Actionsに設定する。この外部変更にも明示承認を得る。
 5. 承認済み`main`をpushし、品質ゲートの成功を確認する。
-6. `GitHub Pagesへ公開` workflowを`main`に対して手動実行する。workflowは全品質ゲート後に`dist`だけを公開する。
+6. `GitHub Pagesへ公開` workflowを`main`に対して手動実行するか、承認内容を`.github/pages-deploy-trigger.txt`へ記録してpushする。workflowは全品質ゲート後に`dist`だけを公開する。
 
 Pages custom workflowの権限と構成は、GitHub公式の[custom workflow手順](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)に従う。
 
@@ -24,7 +24,7 @@ Pages custom workflowの権限と構成は、GitHub公式の[custom workflow手�
 期待URLは`https://ritsumga.github.io/exam-trainer/`とする。公開後、実際のURLとworkflow runをリリース記録へ記入し、次をPC幅と360px幅で確認する。
 
 - ルートURLと`/#/exams`への直リンク
-- 2つのPackと13問の読込、3形式の通常演習、解説・出典表示
+- 2つのPackと163問の読込、3形式の通常演習、解説・出典表示
 - PWAインストール可否とService Worker登録
 - onlineで一度利用した後のoffline再起動、採点、履歴保存、模試再開、成績
 - 再読込とブラウザ再起動後のIndexedDB永続化
